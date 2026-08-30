@@ -1,38 +1,69 @@
 ```html
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Eicha Baby ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 
 <style>
 
+/* =========================
+GLOBAL
+========================= */
+
 *{
-box-sizing:border-box;
 margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
 
+min-height:100vh;
+
+overflow-x:hidden;
+
 background:
-radial-gradient(circle at 50% 20%,#ffd6eb,#b67bd1 35%,#32134c 80%);
+
+radial-gradient(
+circle at 50% 20%,
+#ffb5d1,
+#e95191 30%,
+#751442 65%,
+#20000f
+);
 
 color:white;
 
-font-family:'Cormorant Garamond',serif;
-
-overflow:hidden;
+font-family:Montserrat,sans-serif;
 
 }
 
-#sky{
+
+/* =========================
+STARS
+========================= */
+
+#stars{
+
 position:fixed;
+
 inset:0;
+
+pointer-events:none;
+
+z-index:1;
+
 }
 
 .star{
@@ -40,35 +71,88 @@ inset:0;
 position:absolute;
 
 width:3px;
+
 height:3px;
 
 background:white;
 
 border-radius:50%;
 
-box-shadow:0 0 15px white;
+box-shadow:
+0 0 8px white,
+0 0 18px #fff;
 
 animation:
-shine 2s infinite alternate;
+twinkle 2s infinite alternate;
 
 }
 
-@keyframes shine{
+@keyframes twinkle{
 
 from{
 opacity:.1;
+transform:scale(.5);
 }
 
 to{
 opacity:1;
-transform:scale(2);
+transform:scale(1.8);
 }
 
 }
+
+
+/* =========================
+HEARTS
+========================= */
+
+#hearts{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:4;
+
+}
+
+.heart{
+
+position:absolute;
+
+bottom:-50px;
+
+font-size:25px;
+
+animation:
+heartUp 8s linear forwards;
+
+}
+
+@keyframes heartUp{
+
+to{
+
+transform:
+translateY(-110vh)
+rotate(30deg);
+
+opacity:0;
+
+}
+
+}
+
+
+/* =========================
+PAGES
+========================= */
 
 .page{
 
-height:100vh;
+min-height:100vh;
 
 display:none;
 
@@ -78,11 +162,11 @@ justify-content:center;
 
 text-align:center;
 
-padding:25px;
+padding:30px;
 
 position:relative;
 
-z-index:5;
+z-index:10;
 
 }
 
@@ -90,169 +174,430 @@ z-index:5;
 
 display:flex;
 
-animation:appear 1.5s;
+animation:
+pageIn 1.2s ease;
 
 }
 
-@keyframes appear{
+@keyframes pageIn{
 
 from{
+
 opacity:0;
-transform:translateY(30px);
+
+transform:
+scale(.94);
+
 }
 
 to{
+
 opacity:1;
-transform:none;
+
+transform:
+scale(1);
+
 }
 
 }
+
+
+/* =========================
+TEXT
+========================= */
 
 .script{
+
 font-family:'Great Vibes',cursive;
+
 }
 
-.title{
+.serif{
 
-font-family:'Great Vibes',cursive;
+font-family:'Cormorant Garamond',serif;
 
-font-size:
-clamp(80px,15vw,170px);
+}
 
-line-height:.8;
+.glow{
 
 text-shadow:
-0 0 15px white,
-0 0 40px #ff9dd0,
-0 0 90px #ff61ad;
+
+0 0 10px white,
+
+0 0 30px #ffb0ce,
+
+0 0 70px #ff4d91;
 
 }
 
-.sub{
 
-font-size:23px;
+/* =========================
+INTRO
+========================= */
+
+.intro{
+
+font-size:
+clamp(75px,15vw,160px);
+
+line-height:.75;
+
+}
+
+.tag{
+
+letter-spacing:7px;
+
+font-size:10px;
+
+margin-bottom:20px;
+
+}
+
+.description{
 
 max-width:650px;
 
-line-height:1.6;
-
 margin:35px auto;
+
+line-height:1.8;
+
+font-size:16px;
+
+color:#ffe7f1;
 
 }
 
-button{
 
-padding:17px 40px;
+/* =========================
+BUTTON
+========================= */
 
-border-radius:50px;
+.btn{
 
 border:none;
 
-background:white;
+border-radius:100px;
 
-color:#8b2763;
+padding:
+16px 35px;
+
+background:
+linear-gradient(
+135deg,
+#fff,
+#ffd3e3
+);
+
+color:#99134f;
 
 font-weight:bold;
 
 cursor:pointer;
 
-font-size:14px;
+transition:.3s;
 
-box-shadow:0 10px 40px rgba(255,255,255,.3);
+box-shadow:
+0 10px 40px
+rgba(255,255,255,.3);
+
+}
+
+.btn:hover{
+
+transform:
+translateY(-5px)
+scale(1.05);
+
+box-shadow:
+0 15px 60px
+rgba(255,255,255,.5);
 
 }
 
-button:hover{
 
-transform:scale(1.08);
+/* =========================
+GLASS
+========================= */
+
+.card{
+
+width:min(850px,95vw);
+
+padding:55px 35px;
+
+border-radius:40px;
+
+background:
+rgba(255,255,255,.13);
+
+border:
+1px solid
+rgba(255,255,255,.25);
+
+backdrop-filter:
+blur(25px);
+
+box-shadow:
+0 30px 100px
+rgba(0,0,0,.35);
 
 }
+
+
+/* =========================
+BOUQUET
+========================= */
 
 .bouquet{
 
 font-size:140px;
 
-filter:
-drop-shadow(0 0 40px white);
+margin-bottom:20px;
 
 animation:
-float 3s infinite ease-in-out;
+
+bouquetFloat
+3s infinite ease-in-out;
+
+filter:
+drop-shadow(
+0 0 35px white
+);
 
 }
 
-@keyframes float{
+@keyframes bouquetFloat{
 
 50%{
-transform:translateY(-20px);
-}
+
+transform:
+translateY(-18px)
+rotate(2deg);
 
 }
 
-.message{
+}
+
+
+/* =========================
+HEADINGS
+========================= */
+
+.heading{
+
+font-family:
+'Cormorant Garamond',
+serif;
 
 font-size:
-clamp(24px,4vw,35px);
+clamp(45px,8vw,85px);
 
-max-width:750px;
+line-height:1;
 
-line-height:1.6;
+}
+
+.text{
+
+font-family:
+'Cormorant Garamond',
+serif;
+
+font-size:24px;
+
+line-height:1.7;
+
+max-width:720px;
 
 margin:30px auto;
 
 }
+
+
+/* =========================
+NO BUTTON
+========================= */
+
+.choice{
+
+margin-top:30px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+min-height:100px;
+
+}
+
+.no{
+
+background:
+rgba(255,255,255,.12);
+
+color:white;
+
+border:
+1px solid
+rgba(255,255,255,.3);
+
+}
+
+
+/* =========================
+PHOTO
+========================= */
 
 .photo{
 
-width:300px;
+width:min(330px,80vw);
 
-height:400px;
+height:430px;
 
-padding:10px;
+padding:12px;
 
 background:white;
 
-margin:30px auto;
+margin:35px auto;
 
-transform:rotate(2deg);
+box-shadow:
+0 30px 80px
+rgba(0,0,0,.5);
 
-box-shadow:0 30px 80px #16001f;
+transform:
+rotate(-2deg);
 
 }
 
 .photo img{
 
 width:100%;
+
 height:100%;
+
 object-fit:cover;
 
 }
 
-.particle{
+
+/* =========================
+POPPER
+========================= */
+
+.pop{
 
 position:fixed;
 
-font-size:25px;
-
-pointer-events:none;
-
-animation:explode 2s forwards;
+font-size:28px;
 
 z-index:100;
 
+pointer-events:none;
+
+animation:
+pop 2.2s ease-out forwards;
+
 }
 
-@keyframes explode{
+@keyframes pop{
 
-to{
+0%{
+
+transform:
+translate(0,0)
+scale(.5);
+
+opacity:0;
+
+}
+
+20%{
+opacity:1;
+}
+
+100%{
 
 transform:
 translate(
 var(--x),
 var(--y)
 )
+rotate(720deg)
+scale(.8);
+
+opacity:0;
+
+}
+
+}
+
+
+/* =========================
+CONFETTI
+========================= */
+
+.confetti{
+
+position:fixed;
+
+width:8px;
+
+height:14px;
+
+top:-20px;
+
+z-index:100;
+
+animation:
+confetti 3s linear forwards;
+
+}
+
+@keyframes confetti{
+
+to{
+
+transform:
+translateY(110vh)
 rotate(720deg);
 
 opacity:0;
+
+}
+
+}
+
+
+/* =========================
+FINAL
+========================= */
+
+.final{
+
+font-size:
+clamp(75px,14vw,150px);
+
+}
+
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:600px){
+
+.card{
+
+padding:
+40px 20px;
+
+}
+
+.text{
+
+font-size:20px;
 
 }
 
@@ -262,33 +607,58 @@ opacity:0;
 
 </head>
 
+
 <body>
 
-<div id="sky"></div>
+
+<div id="stars"></div>
+
+<div id="hearts"></div>
 
 
-<section class="page active" id="one">
+<!-- =================================
+PAGE 1
+================================= -->
+
+<section
+class="page active"
+id="page1">
 
 <div>
 
-<div style="font-size:15px;letter-spacing:8px">
-ONCE UPON A TIME...
+<div class="tag">
+THIS LITTLE WORLD IS FOR
 </div>
 
-<h1 class="title">
-There was Eicha.
+<h1
+class="intro script glow">
+
+Eicha Baby
+
 </h1>
 
-<p class="sub">
+<p class="description">
 
-And somehow,
-the world became a little more beautiful
-the day she existed.
+No countdown.
+
+No waiting.
+
+No boring birthday message.
+
+Just you...
+
+and a little surprise
+made with a ridiculous amount
+of love. ❤️
 
 </p>
 
-<button onclick="show('two')">
-CONTINUE ❤️
+<button
+class="btn"
+onclick="next(2)">
+
+COME CLOSER ❤️
+
 </button>
 
 </div>
@@ -296,33 +666,57 @@ CONTINUE ❤️
 </section>
 
 
-<section class="page" id="two">
+<!-- =================================
+PAGE 2
+================================= -->
 
-<div>
+<section
+class="page"
+id="page2">
+
+<div class="card">
 
 <div class="bouquet">
 💐
 </div>
 
-<h1 class="script"
-style="font-size:70px">
+<h2 class="heading">
 
-A bouquet for you,
-my love.
+A bouquet...
 
-</h1>
+<br>
 
-<p class="message">
+<span class="script glow">
+just for you.
+</span>
 
-Because no ordinary bouquet
-could ever be enough
-for someone as extraordinary
-as you.
+</h2>
+
+<p class="text">
+
+I wish I could actually hand this
+to you today.
+
+But since I can't fit a bouquet
+through a screen...
+
+this will have to do.
+
+🌹 🌷 🌸 🌺 🌻
+
+And honestly?
+
+You deserve flowers
+every single day.
 
 </p>
 
-<button onclick="show('three')">
-KEEP GOING ✨
+<button
+class="btn"
+onclick="next(3)">
+
+KEEP GOING, BABY ✨
+
 </button>
 
 </div>
@@ -330,88 +724,128 @@ KEEP GOING ✨
 </section>
 
 
-<section class="page" id="three">
+<!-- =================================
+PAGE 3
+================================= -->
 
-<div>
+<section
+class="page"
+id="page3">
 
-<h1 class="script"
-style="font-size:90px">
+<div class="card">
 
-Look up, Eicha...
+<div style="font-size:70px">
+✨
+</div>
 
-</h1>
+<h2 class="heading serif">
 
-<p class="message">
+Eicha...
 
-I put stars everywhere.
+<br>
 
-Not because you need more light...
+Do you want
+your birthday gift?
 
-but because I wanted the sky
-to have something beautiful
-to look at too.
+</h2>
+
+<p class="text">
+
+There is something waiting
+for you.
+
+But apparently,
+you need to answer
+one very important question.
 
 </p>
 
-<button onclick="burst()">
-MAKE THE SKY SPARKLE ✨
+
+<div class="choice">
+
+<button
+class="btn"
+onclick="yes()">
+
+YES 🎁
+
 </button>
+
+<button
+class="btn no"
+id="no"
+onmouseover="escapeNo()"
+onclick="escapeNo()">
+
+NO 😐
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =================================
+PAGE 4
+================================= -->
+
+<section
+class="page"
+id="page4">
+
+<div class="card">
+
+<div style="font-size:75px">
+😐
+</div>
+
+<h2 class="heading">
+
+Eicha Baby...
+
+</h2>
+
+<p class="text">
+
+You really clicked NO?
 
 <br><br>
 
-<button onclick="show('four')">
-NEXT ❤️
-</button>
+After all these flowers?
 
-</div>
+<br>
 
-</section>
+After all these stars?
 
+<br>
 
-<section class="page" id="four">
+After I made this entire thing
+for you?
 
-<div>
+<br><br>
 
-<h1 class="script"
-style="font-size:90px">
+<span
+class="script"
+style="
+font-size:50px;
+color:#ffd0df;
+">
 
-My Eicha,
-</h1>
+How dare you. 😭
 
-<p class="message">
-
-Happy Birthday
-to the most precious girl.
-
-I don't know if I'll ever find
-the perfect words to explain
-what you mean to me.
-
-But if I could,
-I'd tell you that your existence
-is one of the sweetest things
-life has ever given me.
-
-You deserve gentle mornings,
-beautiful sunsets,
-big dreams,
-peaceful nights,
-and a heart that never forgets
-how deeply it is loved.
-
-And if I could make one wish
-for you today...
-
-I'd wish that you could see
-yourself the way I see you.
-
-Because then you'd finally understand
-just how incredibly special you are.
+</span>
 
 </p>
 
-<button onclick="show('five');burst()">
-ONE LAST SURPRISE ❤️
+<button
+class="btn"
+onclick="next(3)">
+
+FINE, I WANT MY GIFT 😭
+
 </button>
 
 </div>
@@ -419,48 +853,314 @@ ONE LAST SURPRISE ❤️
 </section>
 
 
-<section class="page" id="five">
+<!-- =================================
+PAGE 5
+================================= -->
+
+<section
+class="page"
+id="page5">
+
+<div class="card">
+
+<h2 class="heading">
+
+Okay...
+
+<br>
+
+<span class="script glow">
+one last question.
+</span>
+
+</h2>
+
+<p class="text">
+
+Are you absolutely sure
+you want to see
+what's waiting for you?
+
+<br><br>
+
+Because once you continue...
+
+you're going to find out
+just how much someone
+loves you.
+
+</p>
+
+<button
+class="btn"
+onclick="gift()">
+
+YES, SHOW ME ❤️
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =================================
+PAGE 6
+================================= -->
+
+<section
+class="page"
+id="page6">
 
 <div>
 
-<div style="font-size:13px;letter-spacing:7px">
-HAPPY BIRTHDAY
+<div class="tag">
+YOUR GIFT HAS ARRIVED
 </div>
 
-<h1 class="title">
+<div
+id="gift"
+class="bouquet"
+style="font-size:150px">
+
+🎁
+
+</div>
+
+<h2 class="heading">
+
+Open it,
+<br>
+
+<span class="script glow">
+Eicha Baby.
+</span>
+
+</h2>
+
+<p class="text">
+
+Go on.
+
+Tap it.
+
+I promise...
+
+it's worth it.
+
+</p>
+
+<button
+class="btn"
+onclick="openGift()">
+
+OPEN MY GIFT 🎁
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =================================
+PAGE 7
+================================= -->
+
+<section
+class="page"
+id="page7">
+
+<div class="card">
+
+<h2
+class="script glow"
+style="font-size:85px">
+
+My Love...
+
+</h2>
+
+<p class="text">
+
+Happy Birthday, Eicha Baby.
+
+<br><br>
+
+I honestly don't think there are
+enough words in any language
+to explain what you mean to me.
+
+<br><br>
+
+You are so much more than
+someone I love.
+
+You are someone I cherish.
+
+Someone I admire.
+
+Someone whose happiness
+genuinely matters to me.
+
+<br><br>
+
+You are the person whose smile
+can turn an ordinary day
+into something beautiful.
+
+Your laugh is something
+I could listen to forever.
+
+And your presence...
+
+somehow makes everything
+feel a little more right.
+
+<br><br>
+
+I hope you never forget
+how precious you are.
+
+Not just to me...
+
+but to everyone lucky enough
+to know you.
+
+<br><br>
+
+I hope this year gives you
+everything you've secretly
+wished for.
+
+I hope you achieve dreams
+you haven't even told anyone about.
+
+I hope you laugh until
+your stomach hurts.
+
+I hope you travel,
+experience,
+grow,
+and become even more
+beautifully yourself.
+
+<br><br>
+
+And most importantly...
+
+I hope you always know
+that there is someone
+who will look at you
+and think:
+
+<br>
+
+<span
+class="script glow"
+style="font-size:55px">
+
+"God, I'm so lucky
+she exists."
+
+</span>
+
+</p>
+
+<button
+class="btn"
+onclick="final()">
+
+THERE'S ONE LAST THING... ❤️
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =================================
+PAGE 8
+================================= -->
+
+<section
+class="page"
+id="page8">
+
+<div>
+
+<div class="tag">
+THE MOST BEAUTIFUL PART
+</div>
+
+<h1
+class="final script glow">
+
 Eicha Baby
+
 </h1>
+
 
 <div class="photo">
 
-<img src="eicha.jpg">
+<img
+src="eicha.jpg"
+alt="Eicha Baby ❤️">
 
 </div>
 
-<p class="message">
 
-You are my favorite
-kind of beautiful.
+<p class="text">
+
+If I could give you
+one thing today...
+
+I'd give you the ability
+to see yourself
+through my eyes.
+
+Just once.
 
 <br><br>
 
-My favorite smile.
+Then you'd understand
+why I think you're
+so incredibly beautiful.
 
-My favorite person.
+Why I think you're rare.
 
-My favorite feeling.
+Why your happiness
+means so much to me.
+
+Why your existence
+is something I will always
+be grateful for.
 
 <br><br>
 
-And today,
-I just want you to know...
+You are my favorite person.
 
-<span class="script"
-style="font-size:60px">
+My beautiful girl.
+
+My love.
+
+My Eicha Baby.
+
+<br><br>
+
+<span
+class="script glow"
+style="font-size:65px">
 
 I love you. ❤️
 
 </span>
+
+<br><br>
+
+Happy Birthday,
+my love.
 
 </p>
 
@@ -471,29 +1171,84 @@ I love you. ❤️
 
 <script>
 
-/* STARS */
 
-for(let i=0;i<400;i++){
+/* =================================
+STARS
+================================= */
 
-let s=document.createElement("div");
+const stars=
+document.getElementById("stars");
+
+for(let i=0;i<350;i++){
+
+const s=
+document.createElement("div");
 
 s.className="star";
 
-s.style.left=Math.random()*100+"%";
+s.style.left=
+Math.random()*100+"%";
 
-s.style.top=Math.random()*100+"%";
+s.style.top=
+Math.random()*100+"%";
 
-s.style.animationDelay=Math.random()*4+"s";
+s.style.animationDelay=
+Math.random()*3+"s";
 
-document.getElementById("sky")
-.appendChild(s);
+stars.appendChild(s);
 
 }
 
 
-/* PAGE */
+/* =================================
+FLOATING HEARTS
+================================= */
 
-function show(id){
+function hearts(){
+
+const h=
+document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML=
+[
+"❤️",
+"💗",
+"💖",
+"💕",
+"💘"
+]
+[Math.floor(Math.random()*5)];
+
+h.style.left=
+Math.random()*100+"%";
+
+h.style.animationDuration=
+(6+Math.random()*5)+"s";
+
+document
+.getElementById("hearts")
+.appendChild(h);
+
+setTimeout(
+()=>h.remove(),
+12000
+);
+
+}
+
+setInterval(
+hearts,
+500
+);
+
+
+/* =================================
+PAGE NAVIGATION
+================================= */
+
+function next(n){
 
 document
 .querySelectorAll(".page")
@@ -502,29 +1257,137 @@ p.classList.remove("active")
 );
 
 document
-.getElementById(id)
+.getElementById("page"+n)
 .classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
-/* MAGIC BURST */
+/* =================================
+NO BUTTON
+================================= */
 
-function burst(){
+let noClicks=0;
 
-for(let i=0;i<200;i++){
+function escapeNo(){
 
-let p=document.createElement("div");
+noClicks++;
 
-p.className="particle";
+const btn=
+document.getElementById("no");
 
-p.innerHTML=[
-"✨","💗","🌸","⭐","💖","🌹"
-][Math.floor(Math.random()*6)];
+if(noClicks>=3){
 
-p.style.left="50vw";
+next(4);
 
-p.style.top="50vh";
+return;
+
+}
+
+const x=
+Math.random()*250-125;
+
+const y=
+Math.random()*150-75;
+
+btn.style.transform=
+`translate(${x}px,${y}px)`;
+
+btn.innerText=
+[
+"NO 😐",
+"REALLY?",
+"TRY AGAIN 😭"
+][noClicks-1];
+
+}
+
+
+/* =================================
+YES
+================================= */
+
+function yes(){
+
+confetti(100);
+
+setTimeout(
+()=>next(5),
+600
+);
+
+}
+
+
+/* =================================
+GIFT
+================================= */
+
+function gift(){
+
+confetti(100);
+
+next(6);
+
+}
+
+
+/* =================================
+OPEN GIFT
+================================= */
+
+function openGift(){
+
+popper();
+
+setTimeout(
+()=>next(7),
+1200
+);
+
+}
+
+
+/* =================================
+POPPER EXPLOSION
+================================= */
+
+function popper(){
+
+for(let i=0;i<220;i++){
+
+const p=
+document.createElement("div");
+
+p.className="pop";
+
+p.innerHTML=
+[
+"✨",
+"💖",
+"💗",
+"🌸",
+"🌹",
+"⭐",
+"🎉",
+"💕"
+]
+[
+Math.floor(
+Math.random()*8
+)
+];
+
+p.style.left=
+"50vw";
+
+p.style.top=
+"50vh";
 
 p.style.setProperty(
 "--x",
@@ -538,14 +1401,81 @@ p.style.setProperty(
 
 document.body.appendChild(p);
 
-setTimeout(()=>p.remove(),2500);
+setTimeout(
+()=>p.remove(),
+2500
+);
 
 }
+
+}
+
+
+/* =================================
+CONFETTI
+================================= */
+
+function confetti(amount){
+
+for(let i=0;i<amount;i++){
+
+const c=
+document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=
+Math.random()*100+"vw";
+
+c.style.background=
+[
+"#ff75a9",
+"#ffd166",
+"#ffffff",
+"#c77dff",
+"#ff4d91"
+]
+[
+Math.floor(
+Math.random()*5
+)
+];
+
+c.style.animationDelay=
+Math.random()*1.5+"s";
+
+document.body.appendChild(c);
+
+setTimeout(
+()=>c.remove(),
+4000
+);
+
+}
+
+}
+
+
+/* =================================
+FINAL
+================================= */
+
+function final(){
+
+popper();
+
+confetti(300);
+
+setTimeout(
+()=>next(8),
+900
+);
 
 }
 
 </script>
 
 </body>
+
 </html>
 ```
