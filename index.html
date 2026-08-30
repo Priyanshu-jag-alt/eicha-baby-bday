@@ -1,0 +1,551 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Eicha Baby ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+}
+
+body{
+
+background:
+radial-gradient(circle at 50% 20%,#ffd6eb,#b67bd1 35%,#32134c 80%);
+
+color:white;
+
+font-family:'Cormorant Garamond',serif;
+
+overflow:hidden;
+
+}
+
+#sky{
+position:fixed;
+inset:0;
+}
+
+.star{
+
+position:absolute;
+
+width:3px;
+height:3px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:0 0 15px white;
+
+animation:
+shine 2s infinite alternate;
+
+}
+
+@keyframes shine{
+
+from{
+opacity:.1;
+}
+
+to{
+opacity:1;
+transform:scale(2);
+}
+
+}
+
+.page{
+
+height:100vh;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+padding:25px;
+
+position:relative;
+
+z-index:5;
+
+}
+
+.page.active{
+
+display:flex;
+
+animation:appear 1.5s;
+
+}
+
+@keyframes appear{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+
+}
+
+.script{
+font-family:'Great Vibes',cursive;
+}
+
+.title{
+
+font-family:'Great Vibes',cursive;
+
+font-size:
+clamp(80px,15vw,170px);
+
+line-height:.8;
+
+text-shadow:
+0 0 15px white,
+0 0 40px #ff9dd0,
+0 0 90px #ff61ad;
+
+}
+
+.sub{
+
+font-size:23px;
+
+max-width:650px;
+
+line-height:1.6;
+
+margin:35px auto;
+
+}
+
+button{
+
+padding:17px 40px;
+
+border-radius:50px;
+
+border:none;
+
+background:white;
+
+color:#8b2763;
+
+font-weight:bold;
+
+cursor:pointer;
+
+font-size:14px;
+
+box-shadow:0 10px 40px rgba(255,255,255,.3);
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+}
+
+.bouquet{
+
+font-size:140px;
+
+filter:
+drop-shadow(0 0 40px white);
+
+animation:
+float 3s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+50%{
+transform:translateY(-20px);
+}
+
+}
+
+.message{
+
+font-size:
+clamp(24px,4vw,35px);
+
+max-width:750px;
+
+line-height:1.6;
+
+margin:30px auto;
+
+}
+
+.photo{
+
+width:300px;
+
+height:400px;
+
+padding:10px;
+
+background:white;
+
+margin:30px auto;
+
+transform:rotate(2deg);
+
+box-shadow:0 30px 80px #16001f;
+
+}
+
+.photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.particle{
+
+position:fixed;
+
+font-size:25px;
+
+pointer-events:none;
+
+animation:explode 2s forwards;
+
+z-index:100;
+
+}
+
+@keyframes explode{
+
+to{
+
+transform:
+translate(
+var(--x),
+var(--y)
+)
+rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="sky"></div>
+
+
+<section class="page active" id="one">
+
+<div>
+
+<div style="font-size:15px;letter-spacing:8px">
+ONCE UPON A TIME...
+</div>
+
+<h1 class="title">
+There was Eicha.
+</h1>
+
+<p class="sub">
+
+And somehow,
+the world became a little more beautiful
+the day she existed.
+
+</p>
+
+<button onclick="show('two')">
+CONTINUE ❤️
+</button>
+
+</div>
+
+</section>
+
+
+<section class="page" id="two">
+
+<div>
+
+<div class="bouquet">
+💐
+</div>
+
+<h1 class="script"
+style="font-size:70px">
+
+A bouquet for you,
+my love.
+
+</h1>
+
+<p class="message">
+
+Because no ordinary bouquet
+could ever be enough
+for someone as extraordinary
+as you.
+
+</p>
+
+<button onclick="show('three')">
+KEEP GOING ✨
+</button>
+
+</div>
+
+</section>
+
+
+<section class="page" id="three">
+
+<div>
+
+<h1 class="script"
+style="font-size:90px">
+
+Look up, Eicha...
+
+</h1>
+
+<p class="message">
+
+I put stars everywhere.
+
+Not because you need more light...
+
+but because I wanted the sky
+to have something beautiful
+to look at too.
+
+</p>
+
+<button onclick="burst()">
+MAKE THE SKY SPARKLE ✨
+</button>
+
+<br><br>
+
+<button onclick="show('four')">
+NEXT ❤️
+</button>
+
+</div>
+
+</section>
+
+
+<section class="page" id="four">
+
+<div>
+
+<h1 class="script"
+style="font-size:90px">
+
+My Eicha,
+</h1>
+
+<p class="message">
+
+Happy Birthday
+to the most precious girl.
+
+I don't know if I'll ever find
+the perfect words to explain
+what you mean to me.
+
+But if I could,
+I'd tell you that your existence
+is one of the sweetest things
+life has ever given me.
+
+You deserve gentle mornings,
+beautiful sunsets,
+big dreams,
+peaceful nights,
+and a heart that never forgets
+how deeply it is loved.
+
+And if I could make one wish
+for you today...
+
+I'd wish that you could see
+yourself the way I see you.
+
+Because then you'd finally understand
+just how incredibly special you are.
+
+</p>
+
+<button onclick="show('five');burst()">
+ONE LAST SURPRISE ❤️
+</button>
+
+</div>
+
+</section>
+
+
+<section class="page" id="five">
+
+<div>
+
+<div style="font-size:13px;letter-spacing:7px">
+HAPPY BIRTHDAY
+</div>
+
+<h1 class="title">
+Eicha Baby
+</h1>
+
+<div class="photo">
+
+<img src="eicha.jpg">
+
+</div>
+
+<p class="message">
+
+You are my favorite
+kind of beautiful.
+
+<br><br>
+
+My favorite smile.
+
+My favorite person.
+
+My favorite feeling.
+
+<br><br>
+
+And today,
+I just want you to know...
+
+<span class="script"
+style="font-size:60px">
+
+I love you. ❤️
+
+</span>
+
+</p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* STARS */
+
+for(let i=0;i<400;i++){
+
+let s=document.createElement("div");
+
+s.className="star";
+
+s.style.left=Math.random()*100+"%";
+
+s.style.top=Math.random()*100+"%";
+
+s.style.animationDelay=Math.random()*4+"s";
+
+document.getElementById("sky")
+.appendChild(s);
+
+}
+
+
+/* PAGE */
+
+function show(id){
+
+document
+.querySelectorAll(".page")
+.forEach(p=>
+p.classList.remove("active")
+);
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+
+/* MAGIC BURST */
+
+function burst(){
+
+for(let i=0;i<200;i++){
+
+let p=document.createElement("div");
+
+p.className="particle";
+
+p.innerHTML=[
+"✨","💗","🌸","⭐","💖","🌹"
+][Math.floor(Math.random()*6)];
+
+p.style.left="50vw";
+
+p.style.top="50vh";
+
+p.style.setProperty(
+"--x",
+(Math.random()*1200-600)+"px"
+);
+
+p.style.setProperty(
+"--y",
+(Math.random()*1000-500)+"px"
+);
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),2500);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
