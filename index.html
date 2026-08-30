@@ -1,663 +1,1189 @@
 ```html
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08000f">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<title>For Eicha Baby ❤️</title>
 
-<title>Eicha Baby ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
-GLOBAL
-========================= */
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-
-min-height:100vh;
-
-overflow-x:hidden;
-
-background:
-
-radial-gradient(
-circle at 50% 20%,
-#ffb5d1,
-#e95191 30%,
-#751442 65%,
-#20000f
-);
-
-color:white;
-
-font-family:Montserrat,sans-serif;
-
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at 50% 10%,#421044 0%,#18001f 38%,#050007 100%);
+    color:white;
+    font-family:Montserrat,sans-serif;
 }
 
+/* ======================================================
+   BACKGROUND
+====================================================== */
 
-/* =========================
-STARS
-========================= */
-
-#stars{
-
-position:fixed;
-
-inset:0;
-
-pointer-events:none;
-
-z-index:1;
-
+#stars,#hearts,#fireworks,#confetti{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
 }
 
 .star{
-
-position:absolute;
-
-width:3px;
-
-height:3px;
-
-background:white;
-
-border-radius:50%;
-
-box-shadow:
-0 0 8px white,
-0 0 18px #fff;
-
-animation:
-twinkle 2s infinite alternate;
-
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#fff;
+    border-radius:50%;
+    opacity:.5;
+    animation:twinkle 3s infinite;
 }
 
 @keyframes twinkle{
-
-from{
-opacity:.1;
-transform:scale(.5);
-}
-
-to{
-opacity:1;
-transform:scale(1.8);
-}
-
-}
-
-
-/* =========================
-HEARTS
-========================= */
-
-#hearts{
-
-position:fixed;
-
-inset:0;
-
-pointer-events:none;
-
-z-index:4;
-
+    0%,100%{
+        opacity:.15;
+        transform:scale(.7);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.7);
+    }
 }
 
 .heart{
-
-position:absolute;
-
-bottom:-50px;
-
-font-size:25px;
-
-animation:
-heartUp 8s linear forwards;
-
+    position:absolute;
+    bottom:-40px;
+    color:#ff70a9;
+    filter:drop-shadow(0 0 10px #ff397e);
+    animation:heartFloat linear forwards;
 }
 
-@keyframes heartUp{
+@keyframes heartFloat{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
 
-to{
+    10%{
+        opacity:1;
+    }
 
-transform:
-translateY(-110vh)
-rotate(30deg);
-
-opacity:0;
-
-}
-
+    100%{
+        transform:translateY(-110vh) rotate(35deg);
+        opacity:0;
+    }
 }
 
 
-/* =========================
-PAGES
-========================= */
+/* ======================================================
+   PAGE SYSTEM
+====================================================== */
 
 .page{
-
-min-height:100vh;
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-text-align:center;
-
-padding:30px;
-
-position:relative;
-
-z-index:10;
-
+    min-height:100vh;
+    width:100%;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px 18px;
+    position:relative;
+    z-index:2;
 }
 
 .page.active{
+    display:flex;
+    animation:pageAppear 1s ease;
+}
 
-display:flex;
+@keyframes pageAppear{
 
-animation:
-pageIn 1.2s ease;
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 
 }
 
-@keyframes pageIn{
-
-from{
-
-opacity:0;
-
-transform:
-scale(.94);
-
-}
-
-to{
-
-opacity:1;
-
-transform:
-scale(1);
-
-}
-
+.container{
+    width:min(950px,95vw);
+    text-align:center;
 }
 
 
-/* =========================
-TEXT
-========================= */
+/* ======================================================
+   FONTS
+====================================================== */
 
 .script{
-
-font-family:'Great Vibes',cursive;
-
+    font-family:'Great Vibes',cursive;
 }
 
 .serif{
-
-font-family:'Cormorant Garamond',serif;
-
+    font-family:'Cormorant Garamond',serif;
 }
 
 .glow{
+    text-shadow:
+    0 0 8px rgba(255,90,150,.8),
+    0 0 25px rgba(255,40,120,.5),
+    0 0 60px rgba(255,40,120,.3);
+}
 
-text-shadow:
 
-0 0 10px white,
+/* ======================================================
+   CURTAIN INTRO
+====================================================== */
 
-0 0 30px #ffb0ce,
+#curtainPage{
+    display:flex;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:#050006;
+    overflow:hidden;
+}
 
-0 0 70px #ff4d91;
+.curtain-center{
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    z-index:20;
+
+    text-align:center;
+
+}
+
+.curtain-small{
+
+    font-size:10px;
+    letter-spacing:6px;
+    text-transform:uppercase;
+
+    color:#eeb3c8;
+
+    margin-bottom:18px;
+
+}
+
+.curtain-title{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:
+    clamp(65px,12vw,135px);
+
+    line-height:.8;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px #ff6c9e,
+    0 0 30px #ff377e,
+    0 0 80px rgba(255,40,120,.5);
+
+}
+
+.curtain-sub{
+
+    max-width:500px;
+
+    margin:30px auto;
+
+    color:#e4c9d5;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+.curtain-button{
+
+    border:1px solid rgba(255,255,255,.3);
+
+    padding:16px 35px;
+
+    border-radius:100px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4f91,
+        #9c27c9
+    );
+
+    color:white;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 35px rgba(255,40,120,.4);
+
+    transition:.3s;
+
+}
+
+.curtain-button:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.05);
+
+    box-shadow:
+    0 15px 55px rgba(255,40,120,.7);
 
 }
 
 
-/* =========================
-INTRO
-========================= */
+/* LEFT CURTAIN */
 
-.intro{
+.curtain{
 
-font-size:
-clamp(75px,15vw,160px);
+    position:absolute;
 
-line-height:.75;
+    top:-5%;
 
-}
+    width:53%;
 
-.tag{
+    height:110%;
 
-letter-spacing:7px;
+    z-index:10;
 
-font-size:10px;
+    background:
 
-margin-bottom:20px;
+    repeating-linear-gradient(
+        90deg,
+        #35000d 0px,
+        #7d0928 35px,
+        #b51d49 65px,
+        #620019 100px,
+        #34000c 140px
+    );
 
-}
+    box-shadow:
+    inset -25px 0 40px rgba(0,0,0,.6),
+    inset 20px 0 30px rgba(255,100,140,.08);
 
-.description{
-
-max-width:650px;
-
-margin:35px auto;
-
-line-height:1.8;
-
-font-size:16px;
-
-color:#ffe7f1;
+    transition:
+    transform 2.2s
+    cubic-bezier(.77,0,.18,1);
 
 }
 
 
-/* =========================
-BUTTON
-========================= */
+/* CURTAIN FOLDS */
+
+.curtain:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(0,0,0,.35) 25px,
+        transparent 50px,
+        rgba(255,120,150,.08) 75px,
+        transparent 100px
+    );
+
+}
+
+
+/* CURTAIN GOLD EDGE */
+
+.curtain:after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    width:8px;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        #fff0a3,
+        #c89535,
+        #fff0a3,
+        #a76c20
+    );
+
+    box-shadow:
+    0 0 15px rgba(255,215,120,.7);
+
+}
+
+
+/* LEFT */
+
+.curtain.left{
+
+    left:0;
+
+    transform-origin:left center;
+
+}
+
+.curtain.left:after{
+
+    right:0;
+
+}
+
+
+/* RIGHT */
+
+.curtain.right{
+
+    right:0;
+
+    transform-origin:right center;
+
+}
+
+.curtain.right:after{
+
+    left:0;
+
+}
+
+
+/* OPEN */
+
+.curtain-open .curtain.left{
+
+    transform:
+    translateX(-105%)
+    rotateY(12deg);
+
+}
+
+.curtain-open .curtain.right{
+
+    transform:
+    translateX(105%)
+    rotateY(-12deg);
+
+}
+
+.curtain-open .curtain-center{
+
+    animation:
+    centerFade 1s forwards;
+
+}
+
+@keyframes centerFade{
+
+    to{
+
+        opacity:0;
+        transform:scale(1.1);
+
+    }
+
+}
+
+
+/* ======================================================
+   HEART
+====================================================== */
+
+.intro-heart{
+
+    font-size:75px;
+
+    animation:
+    heartbeat 1.5s infinite;
+
+    filter:
+    drop-shadow(
+    0 0 30px #ff2f78
+    );
+
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    14%{
+        transform:scale(1.2);
+    }
+
+    28%{
+        transform:scale(1);
+    }
+
+    42%{
+        transform:scale(1.13);
+    }
+
+}
+
+
+/* ======================================================
+   BUTTON
+====================================================== */
 
 .btn{
 
-border:none;
+    border:
+    1px solid rgba(255,255,255,.25);
 
-border-radius:100px;
+    background:
+    linear-gradient(
+        135deg,
+        #ff4d91,
+        #a72aff
+    );
 
-padding:
-16px 35px;
+    color:white;
 
-background:
-linear-gradient(
-135deg,
-#fff,
-#ffd3e3
-);
+    padding:
+    15px 30px;
 
-color:#99134f;
+    border-radius:100px;
 
-font-weight:bold;
+    font-weight:600;
 
-cursor:pointer;
+    letter-spacing:1px;
 
-transition:.3s;
+    cursor:pointer;
 
-box-shadow:
-0 10px 40px
-rgba(255,255,255,.3);
+    transition:.3s;
+
+    box-shadow:
+    0 10px 35px
+    rgba(255,40,120,.3);
 
 }
 
 .btn:hover{
 
-transform:
-translateY(-5px)
-scale(1.05);
+    transform:
+    translateY(-4px)
+    scale(1.04);
 
-box-shadow:
-0 15px 60px
-rgba(255,255,255,.5);
+    box-shadow:
+    0 15px 50px
+    rgba(255,40,120,.6);
 
 }
 
 
-/* =========================
-GLASS
-========================= */
+/* ======================================================
+   GLASS CARD
+====================================================== */
 
 .card{
 
-width:min(850px,95vw);
+    padding:45px 30px;
 
-padding:55px 35px;
+    border-radius:35px;
 
-border-radius:40px;
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.11),
+        rgba(255,255,255,.035)
+    );
 
-background:
-rgba(255,255,255,.13);
+    border:
+    1px solid
+    rgba(255,255,255,.15);
 
-border:
-1px solid
-rgba(255,255,255,.25);
+    backdrop-filter:blur(25px);
 
-backdrop-filter:
-blur(25px);
-
-box-shadow:
-0 30px 100px
-rgba(0,0,0,.35);
-
-}
-
-
-/* =========================
-BOUQUET
-========================= */
-
-.bouquet{
-
-font-size:140px;
-
-margin-bottom:20px;
-
-animation:
-
-bouquetFloat
-3s infinite ease-in-out;
-
-filter:
-drop-shadow(
-0 0 35px white
-);
-
-}
-
-@keyframes bouquetFloat{
-
-50%{
-
-transform:
-translateY(-18px)
-rotate(2deg);
-
-}
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.5);
 
 }
 
 
-/* =========================
-HEADINGS
-========================= */
+/* ======================================================
+   QUESTION
+====================================================== */
 
-.heading{
+.warning{
 
-font-family:
-'Cormorant Garamond',
-serif;
+    color:#ff9abc;
 
-font-size:
-clamp(45px,8vw,85px);
+    font-size:10px;
 
-line-height:1;
+    letter-spacing:4px;
 
-}
+    margin-bottom:20px;
 
-.text{
-
-font-family:
-'Cormorant Garamond',
-serif;
-
-font-size:24px;
-
-line-height:1.7;
-
-max-width:720px;
-
-margin:30px auto;
+    text-transform:uppercase;
 
 }
 
+.big-question{
 
-/* =========================
-NO BUTTON
-========================= */
+    font-family:
+    'Cormorant Garamond',
+    serif;
 
-.choice{
+    font-size:
+    clamp(45px,8vw,80px);
 
-margin-top:30px;
+    line-height:.95;
 
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-min-height:100px;
+    margin-bottom:20px;
 
 }
 
-.no{
+.question-sub{
 
-background:
-rgba(255,255,255,.12);
+    max-width:620px;
 
-color:white;
+    margin:auto;
 
-border:
-1px solid
-rgba(255,255,255,.3);
+    line-height:1.8;
+
+    color:#ddc5d2;
+
+}
+
+.choice-area{
+
+    min-height:130px;
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
 
 }
 
 
-/* =========================
-PHOTO
-========================= */
+/* ======================================================
+   GIFT BOX
+====================================================== */
 
-.photo{
+.gift-wrap{
 
-width:min(330px,80vw);
+    width:230px;
 
-height:430px;
+    height:200px;
 
-padding:12px;
+    margin:45px auto;
 
-background:white;
+    position:relative;
 
-margin:35px auto;
+    cursor:pointer;
 
-box-shadow:
-0 30px 80px
-rgba(0,0,0,.5);
-
-transform:
-rotate(-2deg);
+    transition:.4s;
 
 }
 
-.photo img{
+.gift-wrap:hover{
 
-width:100%;
+    transform:
+    translateY(-10px);
 
-height:100%;
+}
 
-object-fit:cover;
+.gift{
+
+    position:absolute;
+
+    width:180px;
+
+    height:125px;
+
+    left:25px;
+
+    bottom:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff3d80,
+        #a71966
+    );
+
+    border-radius:10px;
+
+    box-shadow:
+    0 25px 55px
+    rgba(255,0,100,.4);
+
+}
+
+.gift:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:73px;
+
+    width:35px;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffd36e,
+        #fff0a9,
+        #e8a83e
+    );
+
+}
+
+.lid{
+
+    position:absolute;
+
+    width:205px;
+
+    height:38px;
+
+    left:12px;
+
+    top:35px;
+
+    border-radius:8px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff669d,
+        #c31e6c
+    );
+
+    z-index:4;
+
+}
+
+.lid:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:84px;
+
+    width:35px;
+
+    height:100%;
+
+    background:#ffd36e;
+
+}
+
+.ribbon{
+
+    position:absolute;
+
+    width:60px;
+
+    height:40px;
+
+    left:75px;
+
+    top:18px;
+
+    z-index:5;
+
+}
+
+.ribbon:before,
+.ribbon:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:43px;
+
+    height:30px;
+
+    border:
+    7px solid #ffd36e;
+
+    border-radius:50%;
+
+}
+
+.ribbon:before{
+
+    transform:rotate(30deg);
+
+}
+
+.ribbon:after{
+
+    transform:rotate(-30deg);
+
+    left:10px;
+
+}
+
+.gift-open .lid{
+
+    animation:
+    lidOpen 1s forwards;
+
+}
+
+@keyframes lidOpen{
+
+    to{
+
+        transform:
+        translateY(-100px)
+        rotate(-8deg);
+
+    }
 
 }
 
 
-/* =========================
-POPPER
-========================= */
+/* ======================================================
+   LOVE LETTER
+====================================================== */
 
-.pop{
+.letter{
 
-position:fixed;
+    max-width:720px;
 
-font-size:28px;
+    margin:auto;
 
-z-index:100;
+    padding:50px;
 
-pointer-events:none;
+    text-align:left;
 
-animation:
-pop 2.2s ease-out forwards;
+    color:#4c1832;
 
-}
+    background:
+    linear-gradient(
+        rgba(255,247,240,.98),
+        rgba(255,235,243,.98)
+    );
 
-@keyframes pop{
+    box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.5);
 
-0%{
-
-transform:
-translate(0,0)
-scale(.5);
-
-opacity:0;
-
-}
-
-20%{
-opacity:1;
-}
-
-100%{
-
-transform:
-translate(
-var(--x),
-var(--y)
-)
-rotate(720deg)
-scale(.8);
-
-opacity:0;
+    transform:rotate(-1deg);
 
 }
 
+.letter:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border:
+    1px solid
+    rgba(120,40,70,.2);
+
+}
+
+.letter h2{
+
+    text-align:center;
+
+    font-family:
+    'Great Vibes',
+    cursive;
+
+    font-size:60px;
+
+    color:#a21c55;
+
+    margin-bottom:25px;
+
+}
+
+.letter p{
+
+    font-family:
+    'Cormorant Garamond',
+    serif;
+
+    font-size:21px;
+
+    line-height:1.7;
+
+    margin-bottom:18px;
+
+}
+
+.signature{
+
+    text-align:right;
+
+    font-family:
+    'Great Vibes',
+    cursive;
+
+    font-size:42px;
+
+    color:#a21c55;
+
 }
 
 
-/* =========================
-CONFETTI
-========================= */
+/* ======================================================
+   PHOTO
+====================================================== */
+
+.photo-frame{
+
+    width:min(280px,80vw);
+
+    height:350px;
+
+    padding:10px;
+
+    margin:35px auto;
+
+    background:#fff;
+
+    box-shadow:
+    0 25px 60px
+    rgba(0,0,0,.5);
+
+    transform:rotate(2deg);
+
+}
+
+.photo-frame img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+/* ======================================================
+   FINAL
+====================================================== */
+
+.final-title{
+
+    font-size:
+    clamp(60px,10vw,110px);
+
+    line-height:.9;
+
+}
+
+.final-message{
+
+    max-width:680px;
+
+    margin:auto;
+
+    font-family:
+    'Cormorant Garamond',
+    serif;
+
+    font-size:26px;
+
+    line-height:1.6;
+
+    color:#f1dbe5;
+
+}
+
+
+/* ======================================================
+   FIREWORKS
+====================================================== */
+
+.particle{
+
+    position:fixed;
+
+    width:5px;
+
+    height:5px;
+
+    border-radius:50%;
+
+    background:#ffd66e;
+
+    pointer-events:none;
+
+    z-index:100;
+
+    animation:
+    explode 1.5s
+    ease-out forwards;
+
+}
+
+@keyframes explode{
+
+    to{
+
+        transform:
+        translate(
+        var(--x),
+        var(--y)
+        );
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* ======================================================
+   CONFETTI
+====================================================== */
 
 .confetti{
 
-position:fixed;
+    position:fixed;
 
-width:8px;
+    top:-20px;
 
-height:14px;
+    width:8px;
 
-top:-20px;
+    height:14px;
 
-z-index:100;
+    z-index:100;
 
-animation:
-confetti 3s linear forwards;
-
-}
-
-@keyframes confetti{
-
-to{
-
-transform:
-translateY(110vh)
-rotate(720deg);
-
-opacity:0;
+    animation:
+    fall 3s linear
+    forwards;
 
 }
 
-}
+@keyframes fall{
 
+    to{
 
-/* =========================
-FINAL
-========================= */
+        transform:
+        translateY(110vh)
+        rotate(720deg);
 
-.final{
+        opacity:0;
 
-font-size:
-clamp(75px,14vw,150px);
+    }
 
 }
 
 
-/* =========================
-MOBILE
-========================= */
+/* ======================================================
+   MOBILE
+====================================================== */
 
 @media(max-width:600px){
 
-.card{
+    .curtain-title{
 
-padding:
-40px 20px;
+        font-size:75px;
 
-}
+    }
 
-.text{
+    .curtain-sub{
 
-font-size:20px;
+        padding:0 25px;
 
-}
+    }
+
+    .card{
+
+        padding:
+        35px 18px;
+
+    }
+
+    .letter{
+
+        padding:
+        35px 25px;
+
+    }
+
+    .letter p{
+
+        font-size:19px;
+
+    }
+
+    .choice-area{
+
+        min-height:180px;
+
+    }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
+<!-- ======================================================
+     BACKGROUND
+====================================================== -->
+
 <div id="stars"></div>
-
 <div id="hearts"></div>
+<div id="fireworks"></div>
 
 
-<!-- =================================
-PAGE 1
-================================= -->
+<!-- ======================================================
+     CINEMATIC CURTAIN
+====================================================== -->
 
-<section
-class="page active"
-id="page1">
+<section id="curtainPage">
 
-<div>
+    <div class="curtain left"></div>
 
-<div class="tag">
-THIS LITTLE WORLD IS FOR
+    <div class="curtain right"></div>
+
+
+    <div class="curtain-center">
+
+        <div class="curtain-small">
+            A little surprise for
+        </div>
+
+        <h1 class="curtain-title">
+            Eicha Baby
+        </h1>
+
+        <p class="curtain-sub">
+
+            There's something waiting
+            behind these curtains.
+
+            <br>
+
+            And yes...
+
+            I made an entire website
+            just for you. ❤️
+
+        </p>
+
+        <button
+            class="curtain-button"
+            onclick="openCurtain()">
+
+            OPEN YOUR SURPRISE ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE 1
+====================================================== -->
+
+<section class="page active" id="page1">
+
+<div class="container">
+
+<div class="intro-heart">
+♥
 </div>
 
-<h1
-class="intro script glow">
+<div class="warning">
 
-Eicha Baby
+WELCOME TO YOUR LITTLE WORLD
+
+</div>
+
+<h1 class="intro-title script glow">
+
+Eicha Baby...
 
 </h1>
 
-<p class="description">
+<p class="intro-sub">
 
-No countdown.
+Okay, listen.
 
-No waiting.
+<br><br>
 
-No boring birthday message.
+This isn't just another boring
+"Happy Birthday ❤️" message.
 
-Just you...
+<br><br>
 
-and a little surprise
-made with a ridiculous amount
-of love. ❤️
+Someone apparently decided
+that you deserved an entire website.
+
+<br><br>
+
+So...
+
+welcome to your little surprise.
 
 </p>
 
-<button
-class="btn"
-onclick="next(2)">
+<button class="btn"
+onclick="nextPage(2)">
 
-COME CLOSER ❤️
+LET'S SEE WHAT YOU MADE ✨
 
 </button>
 
@@ -666,116 +1192,64 @@ COME CLOSER ❤️
 </section>
 
 
-<!-- =================================
-PAGE 2
-================================= -->
+<!-- ======================================================
+     PAGE 2 — CLICKBAIT
+====================================================== -->
 
-<section
-class="page"
-id="page2">
+<section class="page" id="page2">
 
-<div class="card">
+<div class="container card">
 
-<div class="bouquet">
-💐
+<div class="warning">
+🚨 VERY IMPORTANT QUESTION 🚨
 </div>
 
-<h2 class="heading">
+<h2 class="big-question">
 
-A bouquet...
+Eicha Baby...
 
 <br>
 
 <span class="script glow">
-just for you.
+
+Do you want your birthday gift?
+
 </span>
 
 </h2>
 
-<p class="text">
+<p class="question-sub">
 
-I wish I could actually hand this
-to you today.
+There is one beautiful gift waiting for you.
 
-But since I can't fit a bouquet
-through a screen...
+<br><br>
 
-this will have to do.
+But unfortunately...
 
-🌹 🌷 🌸 🌺 🌻
-
-And honestly?
-
-You deserve flowers
-every single day.
-
-</p>
-
-<button
-class="btn"
-onclick="next(3)">
-
-KEEP GOING, BABY ✨
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =================================
-PAGE 3
-================================= -->
-
-<section
-class="page"
-id="page3">
-
-<div class="card">
-
-<div style="font-size:70px">
-✨
-</div>
-
-<h2 class="heading serif">
-
-Eicha...
+the birthday department has introduced
+a completely unnecessary security system.
 
 <br>
 
-Do you want
-your birthday gift?
-
-</h2>
-
-<p class="text">
-
-There is something waiting
-for you.
-
-But apparently,
-you need to answer
-one very important question.
+You must choose wisely.
 
 </p>
 
 
-<div class="choice">
+<div class="choice-area">
 
-<button
-class="btn"
-onclick="yes()">
+<button class="btn"
+onclick="yesGift()">
 
 YES 🎁
 
 </button>
 
-<button
-class="btn no"
-id="no"
-onmouseover="escapeNo()"
-onclick="escapeNo()">
+<button class="btn"
+id="noBtn"
+onmouseover="runAway()"
+ontouchstart="runAway()"
+onclick="runAway()">
 
 NO 😐
 
@@ -788,379 +1262,402 @@ NO 😐
 </section>
 
 
-<!-- =================================
-PAGE 4
-================================= -->
+<!-- ======================================================
+     PAGE 3 — HOW DARE YOU
+====================================================== -->
 
-<section
-class="page"
-id="page4">
+<section class="page" id="page3">
 
-<div class="card">
+<div class="container card">
 
 <div style="font-size:75px">
 😐
 </div>
 
-<h2 class="heading">
+<h2 class="big-question">
 
-Eicha Baby...
+Eicha.
+
+<br>
+
+Baby.
 
 </h2>
 
-<p class="text">
+<p class="question-sub">
 
-You really clicked NO?
+You actually pressed NO?
 
 <br><br>
 
-After all these flowers?
+After I made an entire website for you?
 
 <br>
 
-After all these stars?
+After all these sparkles?
 
 <br>
 
-After I made this entire thing
-for you?
+After all this effort?
+
+<br><br>
+
+<strong
+style="
+color:#ff79a9;
+font-size:20px;
+">
+
+HOW DARE YOU. 😭
+
+</strong>
+
+</p>
+
+<br><br>
+
+<button class="btn"
+onclick="nextPage(2)">
+
+OKAY OKAY I WANT THE GIFT 😭
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE 4
+====================================================== -->
+
+<section class="page" id="page4">
+
+<div class="container card">
+
+<div class="warning">
+🎁 GIFT VERIFICATION
+</div>
+
+<h2 class="big-question">
+
+Are you
+
+<span class="script glow">
+really
+</span>
+
+sure?
+
+</h2>
+
+<p class="question-sub">
+
+This is your final opportunity.
+
+<br><br>
+
+Once you click the button...
+
+there is absolutely no going back.
+
+<br><br>
+
+Actually, there is.
+
+But let's pretend there isn't.
+
+😌
+
+</p>
+
+<br>
+
+<button class="btn"
+onclick="nextPage(5)">
+
+YES, GIVE ME MY GIFT 💗
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE 5 — GIFT
+====================================================== -->
+
+<section class="page" id="page5">
+
+<div class="container">
+
+<div class="warning">
+✨ YOUR GIFT HAS ARRIVED ✨
+</div>
+
+<h2 class="big-question serif">
+
+Eicha Baby...
+
+<br>
+
+It's yours.
+
+</h2>
+
+<p class="question-sub">
+
+You've come this far.
+
+<br>
+
+Now there's only one thing left to do.
+
+<br><br>
+
+<strong>
+Open it.
+</strong>
+
+</p>
+
+
+<div class="gift-wrap"
+id="giftBox"
+onclick="openGift()">
+
+<div class="ribbon"></div>
+
+<div class="lid"></div>
+
+<div class="gift"></div>
+
+</div>
+
+
+<p style="
+font-size:10px;
+letter-spacing:4px;
+color:#ffb0ca;
+">
+
+TAP THE GIFT 🎁
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE 6 — LOVE LETTER
+====================================================== -->
+
+<section class="page" id="page6">
+
+<div class="container">
+
+<div class="letter">
+
+<h2>
+For Eicha Baby,
+</h2>
+
+<p>
+Happy Birthday, beautiful.
+</p>
+
+<p>
+
+I could have written a simple birthday wish,
+sent you a cute picture,
+added a heart and called it a day.
+
+But somehow...
+
+that felt far too ordinary for you.
+
+</p>
+
+<p>
+
+So instead, I made you this.
+
+A tiny little world on the internet
+that exists for absolutely no reason
+other than to make you smile today.
+
+</p>
+
+<p>
+
+I hope this new year of your life
+brings you the kind of happiness
+that doesn't disappear when the day ends.
+
+The kind that finds you on random mornings,
+in unexpected places,
+and in the smallest moments.
+
+</p>
+
+<p>
+
+I hope you laugh more.
+
+Dream bigger.
+
+Travel farther.
+
+And become everything you've ever
+wanted to become.
+
+</p>
+
+<p>
+
+And whenever life gets a little too loud,
+I hope you remember one thing:
+
+you are loved,
+you are precious,
+and your existence makes
+this world a little more beautiful.
+
+</p>
+
+<p>
+
+So here's to you, Eicha Baby.
+
+To your smile.
+
+Your chaos.
+
+Your beautiful heart.
+
+And every little thing
+that makes you...
+
+<strong>you.</strong>
+
+</p>
+
+<p>
+
+Happy Birthday.
+
+Today is yours.
+
+</p>
+
+<div class="signature">
+— Yours, always ♡
+</div>
+
+</div>
+
+<br><br>
+
+<button class="btn"
+onclick="finalReveal()">
+
+ONE LAST SURPRISE ✨
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE 7 — FINAL REVEAL
+====================================================== -->
+
+<section class="page" id="page7">
+
+<div class="container">
+
+<div class="intro-heart">
+♥
+</div>
+
+<h1 class="final-title script glow">
+
+Happy Birthday,
+
+<br>
+
+Eicha Baby.
+
+</h1>
+
+
+<div class="photo-frame">
+
+<img
+src="eicha.jpg"
+alt="Eicha Baby ❤️"
+
+onerror="
+this.style.display='none';
+
+this.parentElement.innerHTML=
+
+'<div style=&quot;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#7b3150;
+font-family:Cormorant Garamond;
+font-size:25px;
+text-align:center;
+padding:25px;
+&quot;>
+Eicha Baby ❤️
+<br><br>
+Add eicha.jpg here
+</div>';
+
+">
+
+</div>
+
+
+<p class="final-message">
+
+If I could give you one thing
+for your birthday...
+
+I'd give you the ability
+to see yourself through my eyes.
+
+Just once.
+
+<br><br>
+
+Maybe then you'd understand
+why you're so incredibly
+easy to love.
 
 <br><br>
 
 <span
 class="script"
 style="
-font-size:50px;
-color:#ffd0df;
+font-size:48px;
+color:#ff9fc2;
 ">
 
-How dare you. 😭
+Happy Birthday, Eicha. ❤️
 
 </span>
-
-</p>
-
-<button
-class="btn"
-onclick="next(3)">
-
-FINE, I WANT MY GIFT 😭
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =================================
-PAGE 5
-================================= -->
-
-<section
-class="page"
-id="page5">
-
-<div class="card">
-
-<h2 class="heading">
-
-Okay...
-
-<br>
-
-<span class="script glow">
-one last question.
-</span>
-
-</h2>
-
-<p class="text">
-
-Are you absolutely sure
-you want to see
-what's waiting for you?
-
-<br><br>
-
-Because once you continue...
-
-you're going to find out
-just how much someone
-loves you.
-
-</p>
-
-<button
-class="btn"
-onclick="gift()">
-
-YES, SHOW ME ❤️
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =================================
-PAGE 6
-================================= -->
-
-<section
-class="page"
-id="page6">
-
-<div>
-
-<div class="tag">
-YOUR GIFT HAS ARRIVED
-</div>
-
-<div
-id="gift"
-class="bouquet"
-style="font-size:150px">
-
-🎁
-
-</div>
-
-<h2 class="heading">
-
-Open it,
-<br>
-
-<span class="script glow">
-Eicha Baby.
-</span>
-
-</h2>
-
-<p class="text">
-
-Go on.
-
-Tap it.
-
-I promise...
-
-it's worth it.
-
-</p>
-
-<button
-class="btn"
-onclick="openGift()">
-
-OPEN MY GIFT 🎁
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =================================
-PAGE 7
-================================= -->
-
-<section
-class="page"
-id="page7">
-
-<div class="card">
-
-<h2
-class="script glow"
-style="font-size:85px">
-
-My Love...
-
-</h2>
-
-<p class="text">
-
-Happy Birthday, Eicha Baby.
-
-<br><br>
-
-I honestly don't think there are
-enough words in any language
-to explain what you mean to me.
-
-<br><br>
-
-You are so much more than
-someone I love.
-
-You are someone I cherish.
-
-Someone I admire.
-
-Someone whose happiness
-genuinely matters to me.
-
-<br><br>
-
-You are the person whose smile
-can turn an ordinary day
-into something beautiful.
-
-Your laugh is something
-I could listen to forever.
-
-And your presence...
-
-somehow makes everything
-feel a little more right.
-
-<br><br>
-
-I hope you never forget
-how precious you are.
-
-Not just to me...
-
-but to everyone lucky enough
-to know you.
-
-<br><br>
-
-I hope this year gives you
-everything you've secretly
-wished for.
-
-I hope you achieve dreams
-you haven't even told anyone about.
-
-I hope you laugh until
-your stomach hurts.
-
-I hope you travel,
-experience,
-grow,
-and become even more
-beautifully yourself.
-
-<br><br>
-
-And most importantly...
-
-I hope you always know
-that there is someone
-who will look at you
-and think:
-
-<br>
-
-<span
-class="script glow"
-style="font-size:55px">
-
-"God, I'm so lucky
-she exists."
-
-</span>
-
-</p>
-
-<button
-class="btn"
-onclick="final()">
-
-THERE'S ONE LAST THING... ❤️
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =================================
-PAGE 8
-================================= -->
-
-<section
-class="page"
-id="page8">
-
-<div>
-
-<div class="tag">
-THE MOST BEAUTIFUL PART
-</div>
-
-<h1
-class="final script glow">
-
-Eicha Baby
-
-</h1>
-
-
-<div class="photo">
-
-<img
-src="eicha.jpg"
-alt="Eicha Baby ❤️">
-
-</div>
-
-
-<p class="text">
-
-If I could give you
-one thing today...
-
-I'd give you the ability
-to see yourself
-through my eyes.
-
-Just once.
-
-<br><br>
-
-Then you'd understand
-why I think you're
-so incredibly beautiful.
-
-Why I think you're rare.
-
-Why your happiness
-means so much to me.
-
-Why your existence
-is something I will always
-be grateful for.
-
-<br><br>
-
-You are my favorite person.
-
-My beautiful girl.
-
-My love.
-
-My Eicha Baby.
-
-<br><br>
-
-<span
-class="script glow"
-style="font-size:65px">
-
-I love you. ❤️
-
-</span>
-
-<br><br>
-
-Happy Birthday,
-my love.
 
 </p>
 
@@ -1171,311 +1668,516 @@ my love.
 
 <script>
 
+/* ======================================================
+   CURTAIN
+====================================================== */
 
-/* =================================
-STARS
-================================= */
+function openCurtain(){
 
-const stars=
-document.getElementById("stars");
+    const curtain =
+    document.getElementById(
+        "curtainPage"
+    );
 
-for(let i=0;i<350;i++){
+    curtain.classList.add(
+        "curtain-open"
+    );
 
-const s=
-document.createElement("div");
 
-s.className="star";
+    /* DRAMATIC FIREWORKS */
 
-s.style.left=
-Math.random()*100+"%";
+    setTimeout(()=>{
 
-s.style.top=
-Math.random()*100+"%";
+        launchFireworks(12);
 
-s.style.animationDelay=
-Math.random()*3+"s";
+        createConfetti(120);
 
-stars.appendChild(s);
+    },900);
+
+
+    /* REMOVE CURTAIN */
+
+    setTimeout(()=>{
+
+        curtain.style.display="none";
+
+    },2500);
 
 }
 
 
-/* =================================
-FLOATING HEARTS
-================================= */
+/* ======================================================
+   PAGE NAVIGATION
+====================================================== */
 
-function hearts(){
+function nextPage(number){
 
-const h=
-document.createElement("div");
+    document
+    .querySelectorAll(".page")
+    .forEach(page=>{
 
-h.className="heart";
+        page.classList.remove(
+            "active"
+        );
 
-h.innerHTML=
-[
-"❤️",
-"💗",
-"💖",
-"💕",
-"💘"
-]
-[Math.floor(Math.random()*5)];
+    });
 
-h.style.left=
-Math.random()*100+"%";
 
-h.style.animationDuration=
-(6+Math.random()*5)+"s";
+    const page =
+    document.getElementById(
+        "page"+number
+    );
 
-document
-.getElementById("hearts")
-.appendChild(h);
 
-setTimeout(
-()=>h.remove(),
-12000
-);
+    if(page){
+
+        page.classList.add(
+            "active"
+        );
+
+    }
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* ======================================================
+   STARS
+====================================================== */
+
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<200;i++){
+
+    const star =
+    document.createElement("div");
+
+    star.className="star";
+
+    star.style.left =
+    Math.random()*100+"%";
+
+    star.style.top =
+    Math.random()*100+"%";
+
+    star.style.animationDelay =
+    Math.random()*3+"s";
+
+    star.style.animationDuration =
+    (2+Math.random()*4)+"s";
+
+    stars.appendChild(star);
+
+}
+
+
+/* ======================================================
+   FLOATING HEARTS
+====================================================== */
+
+function createHeart(){
+
+    const heart =
+    document.createElement("div");
+
+    heart.className="heart";
+
+
+    const symbols=[
+        "♥",
+        "♡",
+        "❤",
+        "💗",
+        "💖"
+    ];
+
+
+    heart.innerHTML =
+    symbols[
+        Math.floor(
+            Math.random()*
+            symbols.length
+        )
+    ];
+
+
+    heart.style.left =
+    Math.random()*100+"%";
+
+
+    heart.style.fontSize =
+    (12+Math.random()*25)+"px";
+
+
+    heart.style.animationDuration =
+    (7+Math.random()*8)+"s";
+
+
+    document
+    .getElementById("hearts")
+    .appendChild(heart);
+
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },15000);
 
 }
 
 setInterval(
-hearts,
-500
+    createHeart,
+    650
 );
 
 
-/* =================================
-PAGE NAVIGATION
-================================= */
-
-function next(n){
-
-document
-.querySelectorAll(".page")
-.forEach(p=>
-p.classList.remove("active")
-);
-
-document
-.getElementById("page"+n)
-.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =================================
-NO BUTTON
-================================= */
+/* ======================================================
+   NO BUTTON
+====================================================== */
 
 let noClicks=0;
 
-function escapeNo(){
 
-noClicks++;
+function runAway(){
 
-const btn=
-document.getElementById("no");
-
-if(noClicks>=3){
-
-next(4);
-
-return;
-
-}
-
-const x=
-Math.random()*250-125;
-
-const y=
-Math.random()*150-75;
-
-btn.style.transform=
-`translate(${x}px,${y}px)`;
-
-btn.innerText=
-[
-"NO 😐",
-"REALLY?",
-"TRY AGAIN 😭"
-][noClicks-1];
-
-}
+    noClicks++;
 
 
-/* =================================
-YES
-================================= */
-
-function yes(){
-
-confetti(100);
-
-setTimeout(
-()=>next(5),
-600
-);
-
-}
+    const button =
+    document.getElementById(
+        "noBtn"
+    );
 
 
-/* =================================
-GIFT
-================================= */
+    if(noClicks>=4){
 
-function gift(){
+        nextPage(3);
 
-confetti(100);
+        return;
 
-next(6);
+    }
+
+
+    const x =
+    (Math.random()*260)-130;
+
+    const y =
+    (Math.random()*140)-70;
+
+
+    button.style.transform =
+    `translate(${x}px,${y}px)`;
+
+
+    const texts=[
+
+        "NO 😐",
+        "ARE YOU SURE?",
+        "REALLY?",
+        "NICE TRY 😭"
+
+    ];
+
+
+    button.innerHTML =
+    texts[
+        Math.min(
+            noClicks,
+            3
+        )
+    ];
 
 }
 
 
-/* =================================
-OPEN GIFT
-================================= */
+/* ======================================================
+   YES
+====================================================== */
+
+function yesGift(){
+
+    createConfetti(100);
+
+
+    setTimeout(()=>{
+
+        nextPage(4);
+
+    },500);
+
+}
+
+
+/* ======================================================
+   GIFT
+====================================================== */
+
+let giftOpened=false;
+
 
 function openGift(){
 
-popper();
-
-setTimeout(
-()=>next(7),
-1200
-);
-
-}
+    if(giftOpened)
+    return;
 
 
-/* =================================
-POPPER EXPLOSION
-================================= */
+    giftOpened=true;
 
-function popper(){
 
-for(let i=0;i<220;i++){
+    document
+    .getElementById("giftBox")
+    .classList.add(
+        "gift-open"
+    );
 
-const p=
-document.createElement("div");
 
-p.className="pop";
+    createConfetti(180);
 
-p.innerHTML=
-[
-"✨",
-"💖",
-"💗",
-"🌸",
-"🌹",
-"⭐",
-"🎉",
-"💕"
-]
-[
-Math.floor(
-Math.random()*8
-)
-];
+    launchFireworks(18);
 
-p.style.left=
-"50vw";
 
-p.style.top=
-"50vh";
+    setTimeout(()=>{
 
-p.style.setProperty(
-"--x",
-(Math.random()*1200-600)+"px"
-);
+        nextPage(6);
 
-p.style.setProperty(
-"--y",
-(Math.random()*1000-500)+"px"
-);
-
-document.body.appendChild(p);
-
-setTimeout(
-()=>p.remove(),
-2500
-);
-
-}
+    },1800);
 
 }
 
 
-/* =================================
-CONFETTI
-================================= */
+/* ======================================================
+   FINAL
+====================================================== */
 
-function confetti(amount){
+function finalReveal(){
 
-for(let i=0;i<amount;i++){
+    launchFireworks(40);
 
-const c=
-document.createElement("div");
+    createConfetti(300);
 
-c.className="confetti";
 
-c.style.left=
-Math.random()*100+"vw";
+    setTimeout(()=>{
 
-c.style.background=
-[
-"#ff75a9",
-"#ffd166",
-"#ffffff",
-"#c77dff",
-"#ff4d91"
-]
-[
-Math.floor(
-Math.random()*5
-)
-];
+        nextPage(7);
 
-c.style.animationDelay=
-Math.random()*1.5+"s";
+    },700);
 
-document.body.appendChild(c);
+}
 
-setTimeout(
-()=>c.remove(),
-4000
+
+/* ======================================================
+   CONFETTI
+====================================================== */
+
+function createConfetti(amount){
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const c =
+        document.createElement("div");
+
+        c.className =
+        "confetti";
+
+
+        c.style.left =
+        Math.random()*100+"vw";
+
+
+        c.style.animationDelay =
+        Math.random()*1.5+"s";
+
+
+        const colors=[
+
+            "#ff4d91",
+            "#ffd66e",
+            "#ffffff",
+            "#a86cff",
+            "#ff9ec3"
+
+        ];
+
+
+        c.style.background =
+        colors[
+            Math.floor(
+                Math.random()*
+                colors.length
+            )
+        ];
+
+
+        document.body.appendChild(c);
+
+
+        setTimeout(()=>{
+
+            c.remove();
+
+        },4500);
+
+    }
+
+}
+
+
+/* ======================================================
+   FIREWORKS
+====================================================== */
+
+function launchFireworks(amount){
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        setTimeout(()=>{
+
+            const x =
+            Math.random()*
+            window.innerWidth;
+
+
+            const y =
+            100+
+            Math.random()*
+            (window.innerHeight*.55);
+
+
+            explode(x,y);
+
+        },i*180);
+
+    }
+
+}
+
+
+function explode(x,y){
+
+    for(
+        let i=0;
+        i<60;
+        i++
+    ){
+
+        const particle =
+        document.createElement(
+            "div"
+        );
+
+
+        particle.className =
+        "particle";
+
+
+        particle.style.left =
+        x+"px";
+
+
+        particle.style.top =
+        y+"px";
+
+
+        const angle =
+        Math.random()*
+        Math.PI*2;
+
+
+        const distance =
+        50+
+        Math.random()*150;
+
+
+        particle.style.setProperty(
+            "--x",
+            Math.cos(angle)*
+            distance+"px"
+        );
+
+
+        particle.style.setProperty(
+            "--y",
+            Math.sin(angle)*
+            distance+"px"
+        );
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(()=>{
+
+            particle.remove();
+
+        },1600);
+
+    }
+
+}
+
+
+/* ======================================================
+   SECRET HEART
+====================================================== */
+
+let secret=0;
+
+
+document
+.querySelector(".intro-heart")
+?.addEventListener(
+    "click",
+    ()=>{
+
+        secret++;
+
+
+        if(secret===5){
+
+            explode(
+                window.innerWidth/2,
+                window.innerHeight/2
+            );
+
+
+            createConfetti(80);
+
+
+            alert(
+                "Eicha Baby found the secret. ❤️"
+            );
+
+
+            secret=0;
+
+        }
+
+    }
 );
-
-}
-
-}
-
-
-/* =================================
-FINAL
-================================= */
-
-function final(){
-
-popper();
-
-confetti(300);
-
-setTimeout(
-()=>next(8),
-900
-);
-
-}
 
 </script>
 
 </body>
-
 </html>
 ```
+
